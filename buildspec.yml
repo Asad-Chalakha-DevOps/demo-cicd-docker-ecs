@@ -1,0 +1,15 @@
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 767397952451.dkr.ecr.us-east-1.amazonaws.com
+
+ build:
+    commands:
+      - echo Build started
+      - docker build -t demo-cicd-app .
+      - docker tag demo-cicd-app:latest <your-ecr-uri>:latest
+  post_build:
+    commands:
+      - echo Pushing image to ECR...
+      - docker push <your-ecr-uri>:latest
