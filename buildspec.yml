@@ -1,15 +1,19 @@
+
+version: 0.2
+
 phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 767397952451.dkr.ecr.us-east-1.amazonaws.com
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 767397952451.dkr.ecr.ap-south-1.amazonaws.com
 
- build:
+  build:
     commands:
       - echo Build started
       - docker build -t demo-cicd-app .
-      - docker tag demo-cicd-app:latest <your-ecr-uri>:latest
+      - docker tag demo-cicd-app:latest 767397952451.dkr.ecr.ap-south-1.amazonaws.com/demo-cicd-repo:latest
+
   post_build:
     commands:
       - echo Pushing image to ECR...
-      - docker push <your-ecr-uri>:latest
+      - docker push 767397952451.dkr.ecr.ap-south-1.amazonaws.com/demo-cicd-repo:latest
