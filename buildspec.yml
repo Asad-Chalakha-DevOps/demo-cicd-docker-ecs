@@ -17,3 +17,9 @@ phases:
     commands:
       - echo Pushing image to ECR...
       - docker push 767397952451.dkr.ecr.ap-south-1.amazonaws.com/demo-cicd-repo:latest
+
+      - echo Deploying updated image to ECS service...
+      - aws ecs update-service \
+          --cluster demo-cluster \
+          --service demo-task1-service-ssb3sojp \
+          --force-new-deployment
