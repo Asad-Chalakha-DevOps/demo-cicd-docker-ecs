@@ -3,11 +3,10 @@ version: 0.2
 
 phases:
   pre_build:
-  commands:
+    commands:
     - echo Logging in to Amazon ECR...
     - aws --version
     - docker --version
-    - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
     - aws sts get-caller-identity
     - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 767397952451.dkr.ecr.ap-south-1.amazonaws.com
 
