@@ -11,9 +11,9 @@ phases:
     commands:
       - echo Build started
       - docker build -t demo-cicd-app .
-      - docker tag demo-cicd-app:latest 767397952451.dkr.ecr.ap-south-1.amazonaws.com/demo-cicd-repo:latest
+      - docker tag demo-cicd-app:latest 767397952451.dkr.ecr.ap-south-1.amazonaws.com/demo-cicd-repo
 
   post_build:
     commands:
       - echo Pushing image to ECR...
-      - docker push 767397952451.dkr.ecr.ap-south-1.amazonaws.com/demo-cicd-repo:latest
+      - docker push 767397952451.dkr.ecr.ap-south-1.amazonaws.com/demo-cicd-repo
